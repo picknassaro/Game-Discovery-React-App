@@ -11,7 +11,9 @@ function App() {
                "aside main"`,
         }}
       >
-        <GridItem gridArea="nav"><NavBar /></GridItem>
+        <GridItem gridArea="nav">
+          <NavBar />
+        </GridItem>
         <Show above={"lg"}>
           <GridItem gridArea="aside">aside</GridItem>
         </Show>
