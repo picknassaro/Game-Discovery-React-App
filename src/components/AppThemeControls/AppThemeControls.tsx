@@ -1,4 +1,11 @@
-import { VStack, HStack, Switch, Text, useColorMode, Checkbox } from "@chakra-ui/react";
+import {
+  VStack,
+  HStack,
+  Switch,
+  Text,
+  useColorMode,
+  Checkbox,
+} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
 const AppThemeControls = () => {
@@ -49,14 +56,14 @@ const AppThemeControls = () => {
       </HStack>
       <HStack>
         {!followSystemTheme && (
-        <>
-          <Switch
-            colorScheme="green"
-            isChecked={colorMode === "dark"}
-            onChange={toggleColorMode}
-          />
-          <Text>Dark Mode</Text>
-        </>
+          <>
+            <Switch
+              colorScheme="green"
+              isChecked={colorMode === "dark"}
+              onChange={toggleColorMode}
+            />
+            <Text>Dark Mode</Text>
+          </>
         )}
       </HStack>
     </VStack>
