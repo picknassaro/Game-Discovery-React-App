@@ -18,11 +18,11 @@ const GameCard = ({ game }: GameCardProps) => {
       <Image src={getCroppedImageUrl(game.background_image)} alt={game.name} />
       <CardBody>
         <Heading
-          fontSize="24px"
-          height="60px"
-          whiteSpace="nowrap"
+          fontSize="18px"
           overflow="hidden"
+          whiteSpace="nowrap"
           textOverflow="ellipsis"
+          marginBottom="10px"
         >
           {game.name}
         </Heading>
