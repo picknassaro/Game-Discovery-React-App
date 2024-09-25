@@ -1,6 +1,6 @@
 import { HStack, Image, Text } from "@chakra-ui/react";
 import logo from "../../assets/images/logo.webp";
-import AppThemeControls from "../AppThemeControls/AppThemeControls.tsx";
+import AppThemeControls from "../AppThemeControls/AppThemeControls";
 
 const NavBar = () => {
   return (
