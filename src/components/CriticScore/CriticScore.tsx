@@ -1,7 +1,3 @@
-{
-  /* Add commentary to this file */
-}
-
 import { Badge } from "@chakra-ui/react";
 
 interface CriticScoreProps {

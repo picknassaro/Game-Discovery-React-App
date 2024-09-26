@@ -1,7 +1,3 @@
-{
-  /* Add commentary to this file */
-}
-
 const getCroppedImageUrl = (url: string) => {
   const target = "media/";
   const index = url.indexOf(target) + target.length;

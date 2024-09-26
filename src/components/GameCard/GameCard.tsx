@@ -1,13 +1,10 @@
-{
-  /* Add commentary to this file */
-}
-
 import { Game } from "../../hooks/useGames";
 import { Card, CardBody, Image, Heading, HStack } from "@chakra-ui/react";
 import PlatformIconList from "../PlatformIconList/PlatformIconList";
 import CriticScore from "../CriticScore/CriticScore";
 import getCroppedImageUrl from "../../services/imageCrop";
 
+// Import the Game type from the useGames hook and use it to shape a prop to pass into the render function below.
 interface GameCardProps {
   game: Game;
 }
@@ -19,6 +16,7 @@ const GameCard = ({ game }: GameCardProps) => {
       overflow="hidden"
       boxShadow="0px 0px 10px 0 rgba(0, 0, 0, 0.1)"
     >
+      {/* Use the getCroppedImageUrl function to crop the image */}
       <Image src={getCroppedImageUrl(game.background_image)} alt={game.name} />
       <CardBody>
         <Heading

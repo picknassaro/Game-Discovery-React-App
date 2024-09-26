@@ -18,10 +18,13 @@ import { HStack, Icon } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 
 interface PlatformIconListProps {
-  platforms: Platform[];
+  platforms: Platform[]; // An array of objects shaped by the Platform interface in hooks/useGames.
 }
 
+// Pass in the PlatformIconListProps interface as a prop to this component.
 const PlatformIconList = ({ platforms }: PlatformIconListProps) => {
+  // Create an object that maps the platform names to their respective icons.
+  // iconMap will return an object. This object will contain keys that are strings and values that are IconType objects.
   const iconMap: { [key: string]: IconType } = {
     pc: FaWindows,
     xbox: FaXbox,
