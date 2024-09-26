@@ -1,5 +1,7 @@
 import useData from "./useData";
 
+const useGames = () => useData<Game>("/games");
+
 export interface Game {
   id: number;
   name: string;
@@ -12,7 +14,5 @@ export interface Platform {
   name: string;
   slug: string;
 }
-
-const useGames = () => useData<Game>("/games");
 
 export default useGames;

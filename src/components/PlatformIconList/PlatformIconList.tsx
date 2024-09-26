@@ -1,7 +1,3 @@
-{
-  /* Add commentary to this file */
-}
-
 import {
   FaWindows,
   FaPlaystation,
@@ -13,12 +9,14 @@ import {
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
+// Import the Platform props from the useGames hook. Don't import the whole hook, because <GameCard> will use the Game interface from the useGames hook, and that will be imported separately.
 import { Platform } from "../../hooks/useGames";
 import { HStack, Icon } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 
 interface PlatformIconListProps {
-  platforms: Platform[]; // An array of objects shaped by the Platform interface in hooks/useGames.
+  // Get the Platform interface data from useGames hook as an array. See useGames for what key-value pairs it contains. Spoiler: the keys are id, name, and slug, which will be used below.
+  platforms: Platform[];
 }
 
 // Pass in the PlatformIconListProps interface as a prop to this component.
@@ -39,6 +37,7 @@ const PlatformIconList = ({ platforms }: PlatformIconListProps) => {
 
   return (
     <HStack margin="10px 0">
+      {/* "Map out" the platforms object as a bunch of individual objects and  */}
       {platforms.map((platform) => (
         <Icon key={platform.id} as={iconMap[platform.slug]} color="gray.500" />
       ))}
