@@ -4,7 +4,7 @@ import AppThemeControls from "../AppThemeControls/AppThemeControls";
 
 const NavBar = () => {
   return (
-    <HStack justifyContent="space-between" padding="10px">
+    <HStack justifyContent="space-between" padding="10px" marginBottom="20px">
       <HStack>
         <Image src={logo} boxSize="60px"></Image>
         <Text fontSize="2xl">Nick's Game Hub</Text>

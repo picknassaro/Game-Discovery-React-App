@@ -16,11 +16,23 @@ function App() {
         <NavBar />
       </GridItem>
       <Show above="lg">
-        <GridItem gridArea="aside">aside</GridItem>
+        <GridItem gridArea="aside" style={{ width: "300px" }}>
+          aside
+        </GridItem>
       </Show>
-      <GridItem gridArea="main">
-        <GameGrid />
-      </GridItem>
+      <Show above="lg">
+        <GridItem
+          gridArea="main"
+          style={{ width: "calc(100vw - 300px)", padding: "0 40px" }}
+        >
+          <GameGrid />
+        </GridItem>
+      </Show>
+      <Show below="lg">
+        <GridItem gridArea="main">
+          <GameGrid />
+        </GridItem>
+      </Show>
     </Grid>
   );
 }

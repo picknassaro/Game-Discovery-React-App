@@ -7,15 +7,12 @@ import getCroppedImageUrl from "../../services/imageCrop";
 // Import the Game type from the useGames hook and use it to shape a prop to pass into the render function below.
 interface GameCardProps {
   game: Game;
+  style: React.CSSProperties;
 }
 
-const GameCard = ({ game }: GameCardProps) => {
+const GameCard = ({ game, style }: GameCardProps) => {
   return (
-    <Card
-      borderRadius={10}
-      overflow="hidden"
-      boxShadow="0px 0px 10px 0 rgba(0, 0, 0, 0.1)"
-    >
+    <Card style={style}>
       {/* Use the getCroppedImageUrl function to crop the image */}
       <Image src={getCroppedImageUrl(game.background_image)} alt={game.name} />
       <CardBody>

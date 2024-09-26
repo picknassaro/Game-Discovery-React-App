@@ -25,25 +25,34 @@ interface FetchGameResponse {
 }
 
 const useGames = () => {
-  // the games variable will be an array, and it can only be an array of objects defined by the Game interface, which is itself an array. Typescript requires that these things be explicitly declared.
+  // The games variable will be an array, and it can only be an array of objects defined by the Game interface, which is itself an array. Typescript requires that these things be explicitly declared.
   const [games, setGames] = useState<Game[]>([]);
+  // An error message will be needed.
   const [error, setError] = useState("");
+  // A loading state will be needed as well.
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const abortController = new AbortController();
 
+    setLoading(true); // Set the loading state to true when the component mounts.
+
     apiClients
       .get<FetchGameResponse>("/games", { signal: abortController.signal }) // We're hitting the /games endpoint of the API defined in apiClients.ts. We're passing the signal property to the get method, which is an object that contains an AbortController's signal property. This signal property is used to cancel the request if the component is unmounted before the request is completed.
-      .then((response) => setGames(response.data.results)) // Tap into useState() to set the games variable to the results array of the response object. The response object is the object we get from the API.
+      .then((response) => {
+        setGames(response.data.results);
+        setLoading(false);
+      }) // Tap into useState() to set the games variable to the results array of the response object. The response object is the object we get from the API.
       .catch((error) => {
         if (error instanceof CanceledError) return; // Do nothing if the error is an instance of CanceledError. This is a custom error thrown by axios when the request is canceled. This is a way to prevent the component from updating the state if the component is unmounted before the request is completed.
         setError(error.message); // If the error is not an instance of CanceledError, set the error variable to the error message.
+        setLoading(false);
       });
 
     return () => abortController.abort(); // Return a function that aborts the request when the component is unmounted. This is a cleanup function that runs when the component is unmounted.
   }, []);
 
-  return { games, error }; // Return an object with the games and error variables. This object is what the component that uses this hook will receive.
+  return { games, error, isLoading }; // Return an object with the games, error variables, and loading state. This object is what the component that uses this hook will receive.
 };
 
 export default useGames;
