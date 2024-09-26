@@ -1,3 +1,7 @@
+{
+  /* Add commentary to this file */
+}
+
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
 
 const config: ThemeConfig = {

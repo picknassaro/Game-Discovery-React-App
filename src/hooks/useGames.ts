@@ -1,3 +1,7 @@
+{
+  /* Add commentary to this file */
+}
+
 import { useState, useEffect } from "react";
 import apiClients from "../services/apiClients";
 import { CanceledError } from "axios";

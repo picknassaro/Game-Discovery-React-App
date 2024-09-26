@@ -2,6 +2,10 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../../hooks/useGames";
 import GameCard from "../GameCard/GameCard";
 
+{
+  /* Components/GameGrid was originally built with the functionality of a rudimentary version of Components/GameCard, and the Axios functionality of hooks/useGames and services/apiClients. Their functionalities were broken out into separate files. */
+}
+
 const GameGrid = () => {
   const { games, error } = useGames();
 

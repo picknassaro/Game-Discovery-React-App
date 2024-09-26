@@ -1,3 +1,7 @@
+{
+  /* Add commentary to this file */
+}
+
 import {
   FaWindows,
   FaPlaystation,

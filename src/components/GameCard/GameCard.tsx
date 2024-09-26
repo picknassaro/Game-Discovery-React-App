@@ -1,3 +1,7 @@
+{
+  /* Add commentary to this file */
+}
+
 import { Game } from "../../hooks/useGames";
 import { Card, CardBody, Image, Heading, HStack } from "@chakra-ui/react";
 import PlatformIconList from "../PlatformIconList/PlatformIconList";
