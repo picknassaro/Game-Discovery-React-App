@@ -35,7 +35,7 @@ const GenreList = () => {
                 fontSize="lg"
                 variant="link"
                 onClick={() => {
-                  console.log(genre);
+                  console.log(`${genre.id}: ${genre.name}`);
                 }}
               >
                 {genre.name}
