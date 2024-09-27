@@ -19,16 +19,13 @@ function App() {
       <Show above="lg">
         <GridItem
           gridArea="aside"
-          style={{ width: "300px", paddingLeft: "20px" }}
+          style={{ width: "300px", padding: "0 20px" }}
         >
           <GenreList />
         </GridItem>
       </Show>
       <Show above="lg">
-        <GridItem
-          gridArea="main"
-          style={{ width: "calc(100vw - 300px)", padding: "0 40px" }}
-        >
+        <GridItem gridArea="main" style={{ width: "calc(100vw - 300px)" }}>
           <GameGrid />
         </GridItem>
       </Show>

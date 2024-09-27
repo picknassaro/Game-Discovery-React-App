@@ -7,6 +7,7 @@ const cardStyles = {
   borderRadius: "10px",
   overflow: "hidden",
   boxShadow: "0px 0px 10px 0 rgba(0, 0, 0, 0.1)",
+  margin: "0 20px 40px",
 };
 
 const GameGrid = () => {
@@ -19,10 +20,7 @@ const GameGrid = () => {
 
   return (
     <>
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4, "2xl": 5 }}
-        spacing={10}
-      >
+      <SimpleGrid columns={{ sm: 1, md: 3, lg: 2, xl: 4, "2xl": 5 }}>
         {isLoading &&
           skeletons.map((skeleton) => (
             <GameCardSkeleton key={skeleton} style={cardStyles} />
