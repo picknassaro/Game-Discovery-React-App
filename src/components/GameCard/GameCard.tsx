@@ -17,9 +17,9 @@ const GameCard = ({ game, style }: GameCardProps) => {
     <Card style={style}>
       {/* Use the getCroppedImageUrl function to crop the image */}
       <Image src={getCroppedImageUrl(game.background_image)} alt={game.name} />
-      <CardBody>
+      <CardBody style={{ containerType: "inline-size" }}>
         <Heading
-          fontSize="18px"
+          fontSize="7.5cqw"
           overflow="hidden"
           whiteSpace="nowrap"
           textOverflow="ellipsis"

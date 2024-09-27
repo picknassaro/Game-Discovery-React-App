@@ -19,7 +19,10 @@ const GameGrid = () => {
 
   return (
     <>
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} spacing={10}>
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 4, "2xl": 5 }}
+        spacing={10}
+      >
         {isLoading &&
           skeletons.map((skeleton) => (
             <GameCardSkeleton key={skeleton} style={cardStyles} />
