@@ -36,7 +36,7 @@ const PlatformIconList = ({ platforms }: PlatformIconListProps) => {
   };
 
   return (
-    <HStack margin="10px 0">
+    <HStack margin="5px 0" flexWrap="wrap">
       {/* "Map out" the platforms object as a bunch of individual objects and  */}
       {platforms.map((platform) => (
         <Icon key={platform.id} as={iconMap[platform.slug]} color="gray.500" />

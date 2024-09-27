@@ -27,7 +27,7 @@ const GameCard = ({ game, style }: GameCardProps) => {
         >
           {game.name}
         </Heading>
-        <HStack justifyContent="space-between">
+        <HStack justifyContent="space-between" alignItems="flex-start">
           <PlatformIconList
             platforms={game.parent_platforms.map((p) => p.platform)}
           />
