@@ -7,6 +7,7 @@ const useGenres = () => useData<Genre>("/genres");
 export interface Genre {
   id: number;
   name: string;
+  image_background: string;
 }
 
 export default useGenres;

@@ -17,7 +17,10 @@ function App() {
         <NavBar />
       </GridItem>
       <Show above="lg">
-        <GridItem gridArea="aside" style={{ width: "300px" }}>
+        <GridItem
+          gridArea="aside"
+          style={{ width: "300px", paddingLeft: "20px" }}
+        >
           <GenreList />
         </GridItem>
       </Show>
