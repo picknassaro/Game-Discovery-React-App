@@ -7,12 +7,13 @@ const config: ThemeConfig = {
 
 // Another thing this file can be used for is customizing the default css inscluded with Chakra UI. Here, we will define the breakpoints manually. We have copied the default breakpoints from Chakra UI's docs and added a "2xl" breakpoint.
 const breakpoints = {
-  base: "0em", //0px @font-size 16px
-  sm: "30em", //480px @font-size 16px
-  md: "48em", //768px @font-size 16px
-  lg: "62em", //992px @font-size 16px
-  xl: "80em", //1280px @font-size 16px
-  "2xl": "96em", //1536px @font-size 16px
+  base: "0px",
+  sm: "320px",
+  md: "640px",
+  lg: "960px",
+  "lg+": "1100px",
+  xl: "1280px",
+  "2xl": "1600px",
 };
 
 const theme = extendTheme({ config, breakpoints });
