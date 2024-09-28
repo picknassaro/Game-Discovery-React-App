@@ -9,7 +9,7 @@ interface FetchDataResponse<T> {
   results: T[];
 }
 
-// useData is a custom hook that fetches data from an API endpoint (provided by a specific hook such as useGames, useGenres, etc) and returns the data, error, and loading state.
+// useData is a custom hook that fetches data from an API endpoint and returns the data, error, and loading state.
 const useData = <T>(endpoint: string) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");

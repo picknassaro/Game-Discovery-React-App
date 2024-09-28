@@ -2,19 +2,28 @@ import useData from "./useData";
 
 // useGames is basically just useData with the /games endpoint specified (oversimplification but good enough for a noob). But it also has to declare a type for the Game object that it will return. This type is used in the GameCard component to shape the props that it receives.
 
-interface GamesQueryParams {
-  genres?: number;
+interface TopLevelQuery {
+  queryType: string;
 }
 
-const useGames = (queryParams: GamesQueryParams = {}) => {
+interface GamesQueryParams {
+  [key: string]: unknown;
+}
+
+const useQueryController = <T>(
+  { queryType }: TopLevelQuery,
+  queryParams: GamesQueryParams = {}
+) => {
   const queryString = Object.entries(queryParams)
     .filter(([, value]) => value !== undefined && value !== null)
     .map(([key, value]) => `${key}=${value}`)
     .join("&");
 
-  const endpoint = queryString ? `/games?${queryString}` : "/games";
+  const endpoint = queryString
+    ? `/${queryType}?${queryString}`
+    : `/${queryType}`;
 
-  return useData<Game>(endpoint);
+  return useData<T>(endpoint);
 };
 
 // The Game interface will be exported and used by the GameCard component.
@@ -33,4 +42,11 @@ export interface Platform {
   slug: string;
 }
 
-export default useGames;
+// The Genre interface will be exported and used by the GenreList component.
+export interface Genre {
+  id: number;
+  name: string;
+  image_background: string;
+}
+
+export default useQueryController;

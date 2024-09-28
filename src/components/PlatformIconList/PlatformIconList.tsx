@@ -9,13 +9,13 @@ import {
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
-// Import the Platform props from the useGames hook. Don't import the whole hook, because <GameCard> will use the Game interface from the useGames hook, and that will be imported separately.
-import { Platform } from "../../hooks/useGames";
+// Import the Platform props from the useQueryController hook. Don't import the whole hook, because <GameCard> will use the Game interface from the useQueryController hook, and that will be imported separately.
+import { Platform } from "../../hooks/useQueryController";
 import { HStack, Icon } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 
 interface PlatformIconListProps {
-  // Get the Platform interface data from useGames hook as an array. See useGames for what key-value pairs it contains. Spoiler: the keys are id, name, and slug, which will be used below.
+  // Get the Platform interface data from useQueryController hook as an array. See useQueryController for what key-value pairs it contains. Spoiler: the keys are id, name, and slug, which will be used below.
   platforms: Platform[];
 }
 

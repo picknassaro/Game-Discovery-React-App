@@ -8,8 +8,8 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import useGenres from "../../hooks/useGenres";
 import getCroppedImageUrl from "../../services/imageCrop";
+import useQueryController, { Genre } from "../../hooks/useQueryController";
 
 interface GenreListProps {
   selectedGenre: number | undefined;
@@ -17,7 +17,9 @@ interface GenreListProps {
 }
 
 const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
-  const { data, isLoading, error } = useGenres();
+  const { data, isLoading, error } = useQueryController<Genre>({
+    queryType: "genres",
+  });
 
   return (
     <>
