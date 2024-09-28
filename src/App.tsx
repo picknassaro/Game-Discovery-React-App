@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import { useState } from "react";
 import NavBar from "./components/NavBar/NavBar";
 import GameGrid from "./components/GameGrid/GameGrid";
@@ -22,20 +22,20 @@ function App() {
         <NavBar />
       </GridItem>
 
-      {/* Hide this copy of the genre list on mobile */}
-      <Show above="lg">
-        <GridItem gridArea="aside" width="300px">
-          <GenreList
-            // This will be passed in so we can target the selected genre by id and highlight it.
-            selectedGenre={selectedGenre}
-            // This will update the selected genre when a genre is clicked
-            onSelectGenre={setSelectedGenre}
-          />
-        </GridItem>
-      </Show>
+      <GridItem
+        gridArea={["", "", "", "aside"]}
+        width={["100%", "100%", "100%", "300px"]}
+      >
+        <GenreList
+          // This will be passed in so we can target the selected genre by id and highlight it.
+          selectedGenre={selectedGenre}
+          // This will update the selected genre when a genre is clicked
+          onSelectGenre={setSelectedGenre}
+        />
+      </GridItem>
 
       <GridItem
-        gridArea="main"
+        gridArea={["", "", "", "main"]}
         width={["100%", "100%", "100%", "calc(100vw - 300px)"]}
       >
         <PlatformSelector />

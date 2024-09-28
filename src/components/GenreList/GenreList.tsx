@@ -24,13 +24,21 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
   return (
     <>
       <Heading margin="0 20px 20px">Genres</Heading>
-      <List>
+      <List
+        width={["100vw", "100vw", "100vw", "auto"]}
+        display={["flex", "flex", "flex", "block"]}
+        alignItems={["center", "center", "center", ""]}
+        whiteSpace={["nowrap", "nowrap", "nowrap", "normal"]}
+        overflow={["scroll", "scroll", "scroll", "auto"]}
+      >
         {isLoading && <Spinner />}
         {error && <Text>¯\_(ツ)_/¯</Text>}
         <ListItem>
           <HStack justifyContent="center">
             <Button
-              width="calc(100% - 40px)"
+              minWidth="100px"
+              width="calc(100% - 20px)"
+              margin={["0 20px", "0 20px", "0 20px", "0 0 0 20px"]}
               padding="0 20px"
               onClick={() => {
                 onSelectGenre(undefined);
@@ -41,15 +49,29 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
           </HStack>
         </ListItem>
         {data.map((genre) => (
-          <ListItem key={genre.id} margin="10px 0" padding="0 20px">
-            <HStack justifyContent="flex-start" alignItems="stretch">
+          <ListItem
+            key={genre.id}
+            margin={[
+              "20px 40px 20px 0",
+              "20px 40px 20px 0",
+              "20px 40px 20px 0",
+              "10px 0 10px 20px",
+            ]}
+          >
+            <HStack
+              justifyContent="flex-start"
+              alignItems="stretch"
+              gap={["0", "0", "0", "0.5rem"]}
+            >
               <Image
-                boxSize="32px"
+                boxSize="40px"
                 borderRadius="8px"
                 src={getCroppedImageUrl(genre.image_background)}
                 alt={genre.name}
               />
               <Button
+                marginRight={["20px", "20px", "20px", "0"]}
+                minWidth="unset"
                 flexGrow="1"
                 justifyContent="flex-start"
                 fontSize="lg"

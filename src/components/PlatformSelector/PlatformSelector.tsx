@@ -4,12 +4,7 @@ import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 const PlatformSelector = () => {
   return (
     <Menu>
-      <MenuButton
-        as={Button}
-        rightIcon={<ChevronDownIcon />}
-        marginTop="5px"
-        marginBottom="15px"
-      >
+      <MenuButton as={Button} rightIcon={<ChevronDownIcon />} margin="20px">
         Actions
       </MenuButton>
       <MenuList>
