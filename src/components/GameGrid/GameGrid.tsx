@@ -16,19 +16,12 @@ const cardAndSkeletonStyles = {
 };
 
 const GameGrid = ({ selectedGenre }: GameGridProps) => {
+  const skeletons = [...Array(10).keys()];
+
   const [pageSize, setPageSize] = useState<number>(20);
   const [filteredPlatform, setFilteredPlatform] = useState<number | undefined>(
     undefined
   );
-
-  const { data, error, isLoading } = useQueryController<Game>({
-    queryType: "games",
-    genres: selectedGenre,
-    page_size: Number(pageSize),
-    parent_platforms: filteredPlatform,
-  });
-
-  const skeletons = [...Array(10).keys()];
 
   const platformNames = ["PC", "PlayStation", "Xbox", "Nintendo", "SEGA"];
   const { data: platformsData } = useQueryController<{
@@ -37,6 +30,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
   }>({
     queryType: "platforms/lists/parents",
   });
+
   const platformsForDropdown = platformsData?.filter((platform) =>
     platformNames.includes(platform.name)
   );
@@ -46,6 +40,13 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
   const platformNamesForDropdown = platformsForDropdown?.map(
     (platform) => platform.name
   );
+
+  const { data, error, isLoading } = useQueryController<Game>({
+    queryType: "games",
+    genres: selectedGenre,
+    page_size: Number(pageSize),
+    parent_platforms: filteredPlatform,
+  });
 
   return (
     <>
@@ -85,10 +86,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
             <GameCardSkeleton key={skeleton} style={cardAndSkeletonStyles} />
           ))}
         {data.length > 0 ? (
-          // Take the array if items returned as "data" and map over them where each item is called a game. This is to better keep track of the data specifically is. Data could be games, it could be genres, it could be a lot of things. Think of this as "map the array of data as a list of individual games..."
           data.map((game) => (
-            // ...and then for each game, render a GameCard component with the game data.
-            // GameCard will use the the props shaped in useQueryController to render the game data.
             <GameCard key={game.id} game={game} style={cardAndSkeletonStyles} />
           ))
         ) : (

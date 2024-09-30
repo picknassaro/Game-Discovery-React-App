@@ -26,7 +26,6 @@ const useQueryController = <T>({
   return useData<T>(endpoint);
 };
 
-// The Game interface will be exported and used by the GameCard component.
 export interface Game {
   id: number;
   name: string;
@@ -35,14 +34,12 @@ export interface Game {
   metacritic: number;
 }
 
-// The Platform interface will be exported and used by the GameCard component as well.
 export interface Platform {
   id: number;
   name: string;
   slug: string;
 }
 
-// The Genre interface will be exported and used by the GenreList component.
 export interface Genre {
   id: number;
   name: string;

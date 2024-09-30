@@ -5,7 +5,6 @@ import GameGrid from "./components/GameGrid/GameGrid";
 import GenreList from "./components/GenreList/GenreList";
 
 function App() {
-  // State to keep track of the selected genre. We want to highlight the selected genre in the GenreList component and filter the games based on the selected genre.
   const [selectedGenre, setSelectedGenre] = useState<number | undefined>();
 
   return (
@@ -26,9 +25,7 @@ function App() {
         width={["100%", "100%", "100%", "300px"]}
       >
         <GenreList
-          // This will be passed in so we can target the selected genre by id and highlight it.
           selectedGenre={selectedGenre}
-          // This will update the selected genre when a genre is clicked
           onSelectGenre={setSelectedGenre}
         />
       </GridItem>
