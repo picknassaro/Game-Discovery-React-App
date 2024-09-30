@@ -35,8 +35,13 @@ const QueryModSelector = ({
         rightIcon={<ChevronDownIcon />}
         minWidth="unset"
         justifyContent="flex-start"
-        marginBottom="20px"
-        marginRight="20px"
+        margin="0 0 20px 20px"
+        _hover={{ bg: "gray.200" }}
+        _expanded={{ bg: "green.500", textColor: "white" }}
+        _dark={{
+          _hover: { bg: "whiteAlpha.300" },
+          _expanded: { bg: "green.200", textColor: "gray.800" },
+        }}
       >
         {!selectedValue && queryModHeader && queryModHeader}
 

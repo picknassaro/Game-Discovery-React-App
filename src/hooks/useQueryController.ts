@@ -6,6 +6,7 @@ interface QueryControllerParams {
   page_size?: number;
   parent_platforms?: number;
   ordering?: string;
+  search?: string;
 }
 
 const useQueryController = <T>({
@@ -14,6 +15,7 @@ const useQueryController = <T>({
   page_size,
   parent_platforms,
   ordering,
+  search,
 }: QueryControllerParams) => {
   let endpoint = `/${queryType}?`;
 
@@ -28,6 +30,9 @@ const useQueryController = <T>({
   }
   if (ordering) {
     endpoint += `ordering=${ordering}&`;
+  }
+  if (search) {
+    endpoint += `search=${search}&search_precise=true&`;
   }
 
   if (endpoint.endsWith("&")) {

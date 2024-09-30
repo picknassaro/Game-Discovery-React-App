@@ -4,6 +4,7 @@ import GameCard from "../GameCard/GameCard";
 import GameCardSkeleton from "../GameCardSkeleton/GameCardSkeleton";
 import QueryModSelector from "../QueryModSelector/QueryModSelector";
 import { useState } from "react";
+import GameSearch from "../GameSearch/GameSearch";
 
 interface GameGridProps {
   selectedGenre: number | undefined;
@@ -24,6 +25,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
   );
   const [sortedBy, setSortedBy] = useState<string>("-metacritic");
   const [sortByLabel, setSortByLabel] = useState<string>("Highest Rated");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const siteSupportedPlatforms = [
     "PC",
@@ -54,6 +56,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
     page_size: Number(pageSize),
     parent_platforms: filteredPlatform,
     ordering: sortedBy,
+    search: searchQuery,
   });
 
   return (
@@ -62,19 +65,15 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
         <Heading margin="0 0 20px 20px">Games</Heading>
       </Show>
       <HStack
-        width={[
-          "calc(100vw)",
-          "calc(100vw)",
-          "calc(100vw)",
-          "unset",
-        ]}
+        width={["calc(100vw)", "calc(100vw)", "calc(100vw)", "unset"]}
         display="flex"
-        alignItems="center"
+        alignItems="flex-start"
         whiteSpace="nowrap"
-        overflow="scroll"
-        padding="0 0 0 20px"
+        overflowX="scroll"
+        padding="0 20px"
         gap="0"
       >
+        <GameSearch onSubmit={(value) => setSearchQuery(value as string)} />
         <QueryModSelector
           queryModHeader="Results Per Page"
           keepHeader={true}
