@@ -8,7 +8,7 @@ const breakpoints = {
   base: "0px",
   sm: "320px",
   md: "640px",
-  lg: "960px",
+  lg: "970px",
   "lg+": "1100px",
   xl: "1280px",
   "2xl": "1600px",

@@ -30,7 +30,14 @@ const QueryModSelector = ({
 
   return (
     <Menu>
-      <MenuButton as={Button} rightIcon={<ChevronDownIcon />} margin="20px">
+      <MenuButton
+        as={Button}
+        rightIcon={<ChevronDownIcon />}
+        minWidth="unset"
+        justifyContent="flex-start"
+        marginBottom="20px"
+        marginRight="20px"
+      >
         {!selectedValue && queryModHeader && queryModHeader}
 
         {selectedValue &&
