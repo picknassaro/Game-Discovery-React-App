@@ -41,7 +41,6 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
   const filteredPlatforms = allPlatforms?.filter((platform) =>
     siteSupportedPlatforms.includes(platform.name)
   );
-  console.log(filteredPlatforms);
   const filteredPlatformIds = filteredPlatforms?.map((platform) => platform.id);
   filteredPlatformIds?.unshift(0);
   const filteredPlatformNames = filteredPlatforms?.map(
@@ -56,7 +55,6 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
     parent_platforms: filteredPlatform,
     ordering: sortedBy,
   });
-  console.log(sortedBy);
 
   return (
     <>
