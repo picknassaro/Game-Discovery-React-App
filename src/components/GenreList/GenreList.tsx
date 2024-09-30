@@ -5,6 +5,7 @@ import {
   Image,
   List,
   ListItem,
+  Show,
   Spinner,
   Text,
 } from "@chakra-ui/react";
@@ -23,7 +24,9 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
 
   return (
     <>
-      <Heading margin="0 20px 20px">Genres</Heading>
+      <Show above="lg">
+        <Heading margin="0 20px 20px">Genres</Heading>
+      </Show>
       <List
         width={["100vw", "100vw", "100vw", "auto"]}
         display={["flex", "flex", "flex", "block"]}
