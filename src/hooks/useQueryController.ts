@@ -1,28 +1,28 @@
 import useData from "./useData";
 
-// useGames is basically just useData with the /games endpoint specified (oversimplification but good enough for a noob). But it also has to declare a type for the Game object that it will return. This type is used in the GameCard component to shape the props that it receives.
-
-interface TopLevelQuery {
+interface QueryControllerParams {
   queryType: string;
+  genres?: number;
+  page_size?: number;
+  parent_platforms?: number;
 }
 
-interface GamesQueryParams {
-  [key: string]: unknown;
-}
-
-const useQueryController = <T>(
-  { queryType }: TopLevelQuery,
-  queryParams: GamesQueryParams = {}
-) => {
-  const queryString = Object.entries(queryParams)
-    .filter(([, value]) => value !== undefined && value !== null)
-    .map(([key, value]) => `${key}=${value}`)
-    .join("&");
-
-  const endpoint = queryString
-    ? `/${queryType}?${queryString}`
-    : `/${queryType}`;
-
+const useQueryController = <T>({
+  queryType,
+  genres,
+  page_size,
+  parent_platforms,
+}: QueryControllerParams) => {
+  let endpoint = `/${queryType}?`;
+  if (genres) {
+    endpoint += `genres=${genres}&`;
+  }
+  if (page_size) {
+    endpoint += `page_size=${page_size}&`;
+  }
+  if (parent_platforms) {
+    endpoint += `parent_platforms=${parent_platforms}&`;
+  }
   return useData<T>(endpoint);
 };
 
