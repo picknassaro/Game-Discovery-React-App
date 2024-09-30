@@ -23,23 +23,30 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
     undefined
   );
 
-  const platformNames = ["PC", "PlayStation", "Xbox", "Nintendo", "SEGA"];
-  const { data: platformsData } = useQueryController<{
+  const siteSupportedPlatforms = [
+    "PC",
+    "PlayStation",
+    "Xbox",
+    "Nintendo",
+    "SEGA",
+  ];
+  const { data: allPlatforms } = useQueryController<{
     id: number;
     name: string;
   }>({
     queryType: "platforms/lists/parents",
   });
 
-  const platformsForDropdown = platformsData?.filter((platform) =>
-    platformNames.includes(platform.name)
+  const filteredPlatforms = allPlatforms?.filter((platform) =>
+    siteSupportedPlatforms.includes(platform.name)
   );
-  const platformIdsForDropdown = platformsForDropdown?.map(
-    (platform) => platform.id
-  );
-  const platformNamesForDropdown = platformsForDropdown?.map(
+  console.log(filteredPlatforms);
+  const filteredPlatformIds = filteredPlatforms?.map((platform) => platform.id);
+  filteredPlatformIds?.unshift(0);
+  const filteredPlatformNames = filteredPlatforms?.map(
     (platform) => platform.name
   );
+  filteredPlatformNames?.unshift("All Platforms");
 
   const { data, error, isLoading } = useQueryController<Game>({
     queryType: "games",
@@ -54,7 +61,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
         <Heading>Games</Heading>
       </Show>
       <QueryModSelector
-        queryModHeader={`Results Per Page`}
+        queryModHeader="Results Per Page"
         keepHeader={true}
         queryModValue={["20", "25", "30", "35", "40"]}
         selectedValue={pageSize}
@@ -62,14 +69,14 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
         takeValue="string"
       />
       <QueryModSelector
-        queryModHeader="Platform"
+        queryModHeader="All Platforms"
         keepHeader={false}
-        queryModKeys={platformIdsForDropdown}
-        queryModValue={platformNamesForDropdown}
+        queryModKeys={filteredPlatformIds}
+        queryModValue={filteredPlatformNames}
         selectedValue={
           filteredPlatform !== undefined
-            ? platformNamesForDropdown?.[
-                platformIdsForDropdown?.indexOf(filteredPlatform)
+            ? filteredPlatformNames?.[
+                filteredPlatformIds?.indexOf(filteredPlatform)
               ]
             : "Platform"
         }
@@ -87,7 +94,12 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
           ))}
         {data.length > 0 ? (
           data.map((game) => (
-            <GameCard key={game.id} game={game} style={cardAndSkeletonStyles} />
+            <GameCard
+              key={game.id}
+              game={game}
+              style={cardAndSkeletonStyles}
+              siteSupportedPlatforms={siteSupportedPlatforms}
+            />
           ))
         ) : (
           <Text>{error}</Text>

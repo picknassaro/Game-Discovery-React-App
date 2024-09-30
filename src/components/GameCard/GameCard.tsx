@@ -7,9 +7,10 @@ import getCroppedImageUrl from "../../services/imageCrop";
 interface GameCardProps {
   game: Game;
   style: React.CSSProperties;
+  siteSupportedPlatforms: string[];
 }
 
-const GameCard = ({ game, style }: GameCardProps) => {
+const GameCard = ({ game, style, siteSupportedPlatforms }: GameCardProps) => {
   return (
     <Card style={style}>
       <Image src={getCroppedImageUrl(game.background_image)} alt={game.name} />
@@ -25,9 +26,13 @@ const GameCard = ({ game, style }: GameCardProps) => {
         </Heading>
         <HStack justifyContent="space-between" alignItems="flex-start">
           <PlatformIconList
-            platforms={game.parent_platforms.map((p) => p.platform)}
+            platforms={game.parent_platforms
+              .map((p) => p.platform)
+              .filter((platform) =>
+                siteSupportedPlatforms.includes(platform.name)
+              )}
           />
-          <CriticScore score={game.metacritic} />
+          {game.metacritic && <CriticScore score={game.metacritic} />}
         </HStack>
       </CardBody>
     </Card>
