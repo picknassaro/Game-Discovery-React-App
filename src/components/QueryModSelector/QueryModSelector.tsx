@@ -4,20 +4,24 @@ import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 interface QueryModSelectorProps {
   queryModHeader: string;
   keepHeader: boolean;
-  queryModKeys?: number[];
+  headerOrder?: number;
+  queryModKeys?: string[] | number[];
   queryModValue?: string[];
   selectedValue?: string | number | undefined;
   onSelect: (value: string | number) => void;
+  onChangeLabel?: (value: string | number) => void;
   takeValue: "string" | "index";
 }
 
 const QueryModSelector = ({
   queryModHeader,
   keepHeader,
+  headerOrder,
   queryModKeys,
   queryModValue,
   selectedValue,
   onSelect,
+  onChangeLabel,
   takeValue,
 }: QueryModSelectorProps) => {
   const handleSelect = (value: string | number) => {
@@ -28,7 +32,17 @@ const QueryModSelector = ({
     <Menu>
       <MenuButton as={Button} rightIcon={<ChevronDownIcon />} margin="20px">
         {!selectedValue && queryModHeader && queryModHeader}
-        {selectedValue && keepHeader && `${selectedValue} ${queryModHeader}`}
+
+        {selectedValue &&
+          keepHeader &&
+          headerOrder === 1 &&
+          `${queryModHeader} ${selectedValue}`}
+
+        {selectedValue &&
+          keepHeader &&
+          headerOrder === 2 &&
+          `${selectedValue} ${queryModHeader}`}
+
         {selectedValue && !keepHeader && selectedValue}
       </MenuButton>
       <MenuList>
@@ -39,6 +53,7 @@ const QueryModSelector = ({
               onClick={() => {
                 if (takeValue === "string") handleSelect(mod);
                 else handleSelect(queryModKeys ? queryModKeys[index] : index);
+                if (onChangeLabel) onChangeLabel(mod);
               }}
             >
               {mod}

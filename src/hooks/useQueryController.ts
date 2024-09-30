@@ -5,6 +5,7 @@ interface QueryControllerParams {
   genres?: number;
   page_size?: number;
   parent_platforms?: number;
+  ordering?: string;
 }
 
 const useQueryController = <T>({
@@ -12,8 +13,10 @@ const useQueryController = <T>({
   genres,
   page_size,
   parent_platforms,
+  ordering,
 }: QueryControllerParams) => {
   let endpoint = `/${queryType}?`;
+
   if (genres) {
     endpoint += `genres=${genres}&`;
   }
@@ -22,6 +25,13 @@ const useQueryController = <T>({
   }
   if (parent_platforms) {
     endpoint += `parent_platforms=${parent_platforms}&`;
+  }
+  if (ordering) {
+    endpoint += `ordering=${ordering}&`;
+  }
+
+  if (endpoint.endsWith("&")) {
+    endpoint = endpoint.slice(0, -1);
   }
   return useData<T>(endpoint);
 };

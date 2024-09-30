@@ -22,6 +22,8 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
   const [filteredPlatform, setFilteredPlatform] = useState<number | undefined>(
     undefined
   );
+  const [sortedBy, setSortedBy] = useState<string>("name");
+  const [sortByLabel, setSortByLabel] = useState<string>("A-Z");
 
   const siteSupportedPlatforms = [
     "PC",
@@ -36,7 +38,6 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
   }>({
     queryType: "platforms/lists/parents",
   });
-
   const filteredPlatforms = allPlatforms?.filter((platform) =>
     siteSupportedPlatforms.includes(platform.name)
   );
@@ -53,7 +54,9 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
     genres: selectedGenre,
     page_size: Number(pageSize),
     parent_platforms: filteredPlatform,
+    ordering: sortedBy,
   });
+  console.log(sortedBy);
 
   return (
     <>
@@ -63,6 +66,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
       <QueryModSelector
         queryModHeader="Results Per Page"
         keepHeader={true}
+        headerOrder={2}
         queryModValue={["20", "25", "30", "35", "40"]}
         selectedValue={pageSize}
         onSelect={(value) => setPageSize(Number(value as string))}
@@ -81,6 +85,31 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
             : "Platform"
         }
         onSelect={(value) => setFilteredPlatform(value as number)}
+        takeValue="index"
+      />
+      <QueryModSelector
+        queryModHeader="Sort By"
+        keepHeader={true}
+        headerOrder={1}
+        queryModKeys={[
+          "name",
+          "-name",
+          "released",
+          "-released",
+          "-metacritic",
+          "metacritic",
+        ]}
+        queryModValue={[
+          "A-Z",
+          "Z-A",
+          "Newest",
+          "Oldest",
+          "Highest Rating",
+          "Lowest Rating",
+        ]}
+        selectedValue={sortByLabel}
+        onSelect={(value) => setSortedBy(value as string)}
+        onChangeLabel={(value) => setSortByLabel(value as string)}
         takeValue="index"
       />
       <SimpleGrid
