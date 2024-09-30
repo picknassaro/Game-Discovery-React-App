@@ -4,7 +4,8 @@ import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 interface QueryModSelectorProps {
   queryModHeader: string;
   keepHeader: boolean;
-  queryMod?: string[];
+  queryModKeys?: number[];
+  queryModValue?: string[];
   selectedValue?: string | number | undefined;
   onSelect: (value: string | number) => void;
   takeValue: "string" | "index";
@@ -13,14 +14,14 @@ interface QueryModSelectorProps {
 const QueryModSelector = ({
   queryModHeader,
   keepHeader,
-  queryMod,
+  queryModKeys,
+  queryModValue,
   selectedValue,
   onSelect,
   takeValue,
 }: QueryModSelectorProps) => {
   const handleSelect = (value: string | number) => {
     onSelect(value);
-    console.log(value);
   };
 
   return (
@@ -31,13 +32,13 @@ const QueryModSelector = ({
         {selectedValue && !keepHeader && selectedValue}
       </MenuButton>
       <MenuList>
-        {queryMod &&
-          queryMod.map((mod, index) => (
+        {queryModValue &&
+          queryModValue.map((mod, index) => (
             <MenuItem
-              key={index}
+              key={queryModKeys ? queryModKeys[index] : index}
               onClick={() => {
                 if (takeValue === "string") handleSelect(mod);
-                else handleSelect(Number(index) + 1);
+                else handleSelect(queryModKeys ? queryModKeys[index] : index);
               }}
             >
               {mod}

@@ -30,6 +30,23 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
 
   const skeletons = [...Array(10).keys()];
 
+  const platformNames = ["PC", "PlayStation", "Xbox", "Nintendo", "SEGA"];
+  const { data: platformsData } = useQueryController<{
+    id: number;
+    name: string;
+  }>({
+    queryType: "platforms/lists/parents",
+  });
+  const platformsForDropdown = platformsData?.filter((platform) =>
+    platformNames.includes(platform.name)
+  );
+  const platformIdsForDropdown = platformsForDropdown?.map(
+    (platform) => platform.id
+  );
+  const platformNamesForDropdown = platformsForDropdown?.map(
+    (platform) => platform.name
+  );
+
   return (
     <>
       <Show above="lg">
@@ -38,7 +55,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
       <QueryModSelector
         queryModHeader={`Results Per Page`}
         keepHeader={true}
-        queryMod={["20", "25", "30", "35", "40"]}
+        queryModValue={["20", "25", "30", "35", "40"]}
         selectedValue={pageSize}
         onSelect={(value) => setPageSize(Number(value as string))}
         takeValue="string"
@@ -46,9 +63,15 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
       <QueryModSelector
         queryModHeader="Platform"
         keepHeader={false}
-        // we need to get the list of parent platforms for this instance of queryMod by querying https://api.rawg.io/api/platforms/lists/parents. when we map over the list of parent platforms returned by the api call, we set the keys to be the ids of the parent platforms and the values to be the names of the parent platforms. This way, we can use the parent platform id as the value to filter the games by parent platform. however, we need to only map parent platforms whose ids match the ids of parent platforms we want to show.
-        //queryMod={["PC", "PlayStation", "Xbox", "Nintendo", "SEGA"]}
-        selectedValue={filteredPlatform}
+        queryModKeys={platformIdsForDropdown}
+        queryModValue={platformNamesForDropdown}
+        selectedValue={
+          filteredPlatform !== undefined
+            ? platformNamesForDropdown?.[
+                platformIdsForDropdown?.indexOf(filteredPlatform)
+              ]
+            : "Platform"
+        }
         onSelect={(value) => setFilteredPlatform(value as number)}
         takeValue="index"
       />
