@@ -5,6 +5,8 @@ import {
   Text,
   useColorMode,
   Checkbox,
+  Show,
+  Hide,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
@@ -38,28 +40,56 @@ const AppThemeControls = () => {
   };
 
   return (
-    <VStack alignItems="end">
-      <HStack>
-        <Checkbox
-          colorScheme="green"
-          isChecked={followSystemTheme}
-          onChange={toggleSystemTheme}
-        />
-        <Text>Follow System Theme</Text>
-      </HStack>
-      <HStack>
-        {!followSystemTheme && (
-          <>
-            <Switch
+    <>
+      <Show above="sm+">
+        <VStack alignItems="end">
+          <HStack>
+            <Checkbox
               colorScheme="green"
-              isChecked={colorMode === "dark"}
-              onChange={toggleColorMode}
+              isChecked={followSystemTheme}
+              onChange={toggleSystemTheme}
             />
-            <Text>Dark Mode</Text>
-          </>
-        )}
-      </HStack>
-    </VStack>
+            <Text>Follow System Theme</Text>
+          </HStack>
+          <HStack>
+            {!followSystemTheme && (
+              <>
+                <Switch
+                  colorScheme="green"
+                  isChecked={colorMode === "dark"}
+                  onChange={toggleColorMode}
+                />
+                <Text>Dark Mode</Text>
+              </>
+            )}
+          </HStack>
+        </VStack>
+      </Show>
+      <Hide above="sm+">
+        <VStack alignItems="center">
+          <HStack>
+            <Checkbox
+              colorScheme="green"
+              isChecked={followSystemTheme}
+              onChange={toggleSystemTheme}
+            />
+            <Text>Follow System Theme</Text>
+          </HStack>
+          <HStack>
+            {!followSystemTheme && (
+              <>
+                <Switch
+                  colorScheme="green"
+                  isChecked={colorMode === "dark"}
+                  onChange={toggleColorMode}
+                />
+                <Text>Dark Mode</Text>
+              </>
+            )}
+          </HStack>
+        </VStack>
+      </Hide>
+    </>
   );
 };
 

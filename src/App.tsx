@@ -21,8 +21,8 @@ function App() {
       </GridItem>
 
       <GridItem
-        gridArea={["", "", "", "aside"]}
-        width={["100%", "100%", "100%", "300px"]}
+        gridArea={["", "", "", "", "aside"]}
+        width={["100%", "100%", "100%", "100%", "300px"]}
       >
         <GenreList
           selectedGenre={selectedGenre}
@@ -31,8 +31,8 @@ function App() {
       </GridItem>
 
       <GridItem
-        gridArea={["", "", "", "main"]}
-        width={["100%", "100%", "100%", "calc(100vw - 300px)"]}
+        gridArea={["", "", "", "", "main"]}
+        width={["100%", "100%", "100%", "100%", "calc(100vw - 300px)"]}
       >
         <GameGrid selectedGenre={selectedGenre} />
       </GridItem>

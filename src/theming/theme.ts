@@ -7,6 +7,7 @@ const config: ThemeConfig = {
 const breakpoints = {
   base: "0px",
   sm: "320px",
+  "sm+": "480px",
   md: "640px",
   lg: "970px",
   "lg+": "1100px",

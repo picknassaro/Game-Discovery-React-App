@@ -65,7 +65,13 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
         <Heading margin="0 0 20px 20px">Games</Heading>
       </Show>
       <HStack
-        width={["calc(100vw)", "calc(100vw)", "calc(100vw)", "unset"]}
+        width={[
+          "calc(100vw)",
+          "calc(100vw)",
+          "calc(100vw)",
+          "calc(100vw)",
+          "unset",
+        ]}
         display="flex"
         alignItems="flex-start"
         whiteSpace="nowrap"
@@ -127,7 +133,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
       <SimpleGrid
         spacing="5"
         margin="0 20px"
-        columns={{ base: 1, sm: 1, md: 2, lg: 2, "lg+": 3, xl: 4, "2xl": 5 }}
+        columns={{ base: 1, sm: 1, "sm+": 2, md: 3, lg: 2, "lg+": 3, xl: 4, "2xl": 5 }}
       >
         {isLoading &&
           skeletons.map((skeleton) => (

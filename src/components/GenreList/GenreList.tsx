@@ -28,11 +28,11 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
         <Heading margin="0 20px 20px">Genres</Heading>
       </Show>
       <List
-        width={["100vw", "100vw", "100vw", "auto"]}
-        display={["flex", "flex", "flex", "block"]}
-        alignItems={["center", "center", "center", ""]}
-        whiteSpace={["nowrap", "nowrap", "nowrap", "normal"]}
-        overflow={["scroll", "scroll", "scroll", "auto"]}
+        width={["100vw", "100vw", "100vw", "100vw", "auto"]}
+        display={["flex", "flex", "flex", "flex", "block"]}
+        alignItems={["center", "center", "center", "center", ""]}
+        whiteSpace={["nowrap", "nowrap", "nowrap", "nowrap", "normal"]}
+        overflow={["scroll", "scroll", "scroll", "scroll", "auto"]}
       >
         {isLoading && <Spinner />}
         {error && <Text>¯\_(ツ)_/¯</Text>}
@@ -41,7 +41,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
             <Button
               minWidth="100px"
               width="calc(100% - 20px)"
-              margin={["0 20px", "0 20px", "0 20px", "0 0 0 20px"]}
+              margin={["0 20px", "0 20px", "0 20px", "0 20px", "0 0 0 20px"]}
               padding="0 20px"
               onClick={() => {
                 onSelectGenre(undefined);
@@ -58,13 +58,14 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
               "20px 40px 20px 0",
               "20px 40px 20px 0",
               "20px 40px 20px 0",
+              "20px 40px 20px 0",
               "10px 0 10px 20px",
             ]}
           >
             <HStack
               justifyContent="flex-start"
               alignItems="stretch"
-              gap={["0", "0", "0", "0.5rem"]}
+              gap={["0", "0", "0", "0", "0.5rem"]}
             >
               <Image
                 boxSize="40px"
@@ -73,7 +74,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
                 alt={genre.name}
               />
               <Button
-                marginRight={["20px", "20px", "20px", "0"]}
+                marginRight={["20px", "20px", "20px", "20px", "0"]}
                 minWidth="unset"
                 flexGrow="1"
                 justifyContent="flex-start"
