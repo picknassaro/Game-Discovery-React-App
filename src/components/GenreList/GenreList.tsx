@@ -65,7 +65,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
             <HStack
               justifyContent="flex-start"
               alignItems="stretch"
-              gap={["0", "0", "0", "0", "0.5rem"]}
+              gap={["0", "0", "0", "0", "10px"]}
             >
               <Image
                 boxSize="40px"
