@@ -9,5 +9,5 @@ export default defineConfig({
     outDir: resolve(__dirname, "../../build/www"),
     emptyOutDir: true,
   },
-  base: "./",
+  base: "/Game-Discovery-React-App/",
 });
