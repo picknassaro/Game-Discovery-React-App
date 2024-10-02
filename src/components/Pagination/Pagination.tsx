@@ -1,4 +1,4 @@
-import { Button, HStack, Input } from "@chakra-ui/react";
+import { Button, HStack } from "@chakra-ui/react";
 
 interface PaginationProps {
   pageNumber: number;
@@ -9,7 +9,7 @@ const Pagination = ({ pageNumber, onSelect }: PaginationProps) => {
   const handleSelect = (value: number) => {
     onSelect(value);
     pageNumber = value;
-    const form = document.getElementById('enterPageNumber') as HTMLInputElement;
+    const form = document.getElementById("enterPageNumber") as HTMLInputElement;
     form.value = "";
   };
 
@@ -34,6 +34,24 @@ const Pagination = ({ pageNumber, onSelect }: PaginationProps) => {
           Prev
         </Button>
       )}
+      {pageNumber > 3 && (
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => handleSelect(pageNumber - 3)}
+        >
+          {pageNumber - 3}
+        </Button>
+      )}
+      {pageNumber > 2 && (
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => handleSelect(pageNumber - 2)}
+        >
+          {pageNumber - 2}
+        </Button>
+      )}
       {pageNumber > 1 && (
         <Button
           size="sm"
@@ -51,20 +69,9 @@ const Pagination = ({ pageNumber, onSelect }: PaginationProps) => {
           handleSubmit(input.value);
         }}
       >
-        <Input
-          id="enterPageNumber"
-          minWidth="32px"
-          maxWidth="80px"
-          height="32px"
-          display="inline-block"
-          padding="0"
-          textAlign="center"
-          placeholder={pageNumber.toString()}
-          _placeholder={{ color: "gray.800", opacity: 1 }}
-          paddingTop="1px"
-          textColor="black"
-          _focus={{ _placeholder: { color: "transparent" }, placeholderShown: "false" }}
-        ></Input>
+        <Button size="sm" variant="solid" colorScheme="green">
+          {pageNumber}
+        </Button>
       </form>
       <Button
         size="sm"
@@ -72,6 +79,20 @@ const Pagination = ({ pageNumber, onSelect }: PaginationProps) => {
         onClick={() => handleSelect(pageNumber + 1)}
       >
         {pageNumber + 1}
+      </Button>
+      <Button
+        size="sm"
+        variant="outline"
+        onClick={() => handleSelect(pageNumber + 2)}
+      >
+        {pageNumber + 2}
+      </Button>
+      <Button
+        size="sm"
+        variant="outline"
+        onClick={() => handleSelect(pageNumber + 3)}
+      >
+        {pageNumber + 3}
       </Button>
       <Button
         size="sm"

@@ -81,7 +81,12 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
         padding="0 20px"
         gap="0"
       >
-        <GameSearch onSubmit={(value) => setSearchQuery(value as string)} />
+        <GameSearch
+          onSubmit={(value) => {
+            setSearchQuery(value as string);
+            setCurrentPage(1);
+          }}
+        />
         <QueryModSelector
           queryModHeader="All Platforms"
           keepHeader={false}
@@ -94,7 +99,10 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
                 ]
               : "Platform"
           }
-          onSelect={(value) => setFilteredPlatform(value as number)}
+          onSelect={(value) => {
+            setFilteredPlatform(value as number);
+            setCurrentPage(1);
+          }}
           takeValue="index"
         />
         <QueryModSelector
@@ -118,8 +126,13 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
             "Lowest Rating",
           ]}
           selectedValue={sortByLabel}
-          onSelect={(value) => setSortedBy(value as string)}
-          onChangeLabel={(value) => setSortByLabel(value as string)}
+          onSelect={(value) => {
+            setSortedBy(value as string);
+            setCurrentPage(1);
+          }}
+          onChangeLabel={(value) => {
+            setSortByLabel(value as string);
+          }}
           takeValue="index"
         />
       </HStack>
@@ -127,7 +140,16 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
       <SimpleGrid
         spacing="5"
         margin="0 20px"
-        columns={{ base: 1, sm: 1, "sm+": 2, md: 3, lg: 2, "lg+": 3, xl: 4, "2xl": 5 }}
+        columns={{
+          base: 1,
+          sm: 1,
+          "sm+": 2,
+          md: 3,
+          lg: 2,
+          "lg+": 3,
+          xl: 4,
+          "2xl": 5,
+        }}
       >
         {isLoading &&
           skeletons.map((skeleton) => (
