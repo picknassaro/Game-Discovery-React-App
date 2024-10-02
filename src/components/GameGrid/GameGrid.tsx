@@ -21,7 +21,6 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
   const skeletons = [...Array(10).keys()];
 
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [pageSize, setPageSize] = useState<number>(20);
   const [filteredPlatform, setFilteredPlatform] = useState<number | undefined>(
     undefined
   );
@@ -56,7 +55,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
     queryType: "games",
     genres: selectedGenre,
     search: searchQuery,
-    page_size: Number(pageSize),
+    page_size: 20,
     parent_platforms: filteredPlatform,
     ordering: sortedBy,
     page: currentPage,
@@ -83,15 +82,6 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
         gap="0"
       >
         <GameSearch onSubmit={(value) => setSearchQuery(value as string)} />
-        <QueryModSelector
-          queryModHeader="Results Per Page"
-          keepHeader={true}
-          headerOrder={2}
-          queryModValue={["20", "25", "30", "35", "40"]}
-          selectedValue={pageSize}
-          onSelect={(value) => setPageSize(Number(value as string))}
-          takeValue="string"
-        />
         <QueryModSelector
           queryModHeader="All Platforms"
           keepHeader={false}
