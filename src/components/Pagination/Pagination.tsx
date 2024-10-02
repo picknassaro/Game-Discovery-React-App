@@ -34,15 +34,6 @@ const Pagination = ({ pageNumber, onSelect }: PaginationProps) => {
           Prev
         </Button>
       )}
-      {pageNumber > 3 && (
-        <Button
-          size="sm"
-          variant="outline"
-          onClick={() => handleSelect(pageNumber - 3)}
-        >
-          {pageNumber - 3}
-        </Button>
-      )}
       {pageNumber > 2 && (
         <Button
           size="sm"
@@ -86,13 +77,6 @@ const Pagination = ({ pageNumber, onSelect }: PaginationProps) => {
         onClick={() => handleSelect(pageNumber + 2)}
       >
         {pageNumber + 2}
-      </Button>
-      <Button
-        size="sm"
-        variant="outline"
-        onClick={() => handleSelect(pageNumber + 3)}
-      >
-        {pageNumber + 3}
       </Button>
       <Button
         size="sm"
