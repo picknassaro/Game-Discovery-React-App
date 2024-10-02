@@ -55,10 +55,10 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
   const { data, error, isLoading } = useQueryController<Game>({
     queryType: "games",
     genres: selectedGenre,
+    search: searchQuery,
     page_size: Number(pageSize),
     parent_platforms: filteredPlatform,
     ordering: sortedBy,
-    search: searchQuery,
     page: currentPage,
   });
 
