@@ -14,7 +14,7 @@ import useQueryController, { Genre } from "../../hooks/useQueryController";
 
 interface GenreListProps {
   selectedGenre: number | undefined;
-  onSelectGenre: (genreId: number | undefined) => void;
+  onSelectGenre: (value: number | undefined) => void;
 }
 
 const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {

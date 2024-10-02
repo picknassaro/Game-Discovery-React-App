@@ -5,6 +5,7 @@ import GameCardSkeleton from "../GameCardSkeleton/GameCardSkeleton";
 import QueryModSelector from "../QueryModSelector/QueryModSelector";
 import { useState } from "react";
 import GameSearch from "../GameSearch/GameSearch";
+import Pagination from "../Pagination/Pagination";
 
 interface GameGridProps {
   selectedGenre: number | undefined;
@@ -19,13 +20,14 @@ const cardAndSkeletonStyles = {
 const GameGrid = ({ selectedGenre }: GameGridProps) => {
   const skeletons = [...Array(10).keys()];
 
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [pageSize, setPageSize] = useState<number>(20);
   const [filteredPlatform, setFilteredPlatform] = useState<number | undefined>(
     undefined
   );
   const [sortedBy, setSortedBy] = useState<string>("-metacritic");
   const [sortByLabel, setSortByLabel] = useState<string>("Highest Rated");
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const siteSupportedPlatforms = [
     "PC",
@@ -57,6 +59,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
     parent_platforms: filteredPlatform,
     ordering: sortedBy,
     search: searchQuery,
+    page: currentPage,
   });
 
   return (
@@ -130,6 +133,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
           takeValue="index"
         />
       </HStack>
+      <Pagination pageNumber={currentPage} onSelect={setCurrentPage} />
       <SimpleGrid
         spacing="5"
         margin="0 20px"
@@ -152,6 +156,7 @@ const GameGrid = ({ selectedGenre }: GameGridProps) => {
           <Text>{error}</Text>
         )}
       </SimpleGrid>
+      <Pagination pageNumber={currentPage} onSelect={setCurrentPage} />
     </>
   );
 };
